@@ -1,0 +1,105 @@
+<div class="d-flex align-content-center justify-content-center p-5">
+  <form [formGroup]="myProdct" (ngSubmit)="addProduct()">
+    <div class="alert alert-danger" *ngIf="myProdct.errors">
+      Complete required fields
+    </div>
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <label class="form-label" for="form6Example1">Title</label>
+          <input
+            formControlName="title"
+            placeholder="Title"
+            type="text"
+            id="form6Example1"
+            class="form-control"
+          />
+          <div *ngIf="title?.touched && !title?.valid" class="alert alert-danger">
+            <div *ngIf="title?.errors?.['required']">Title is required</div>
+            <div *ngIf="title?.errors?.['minlength']">
+              title is minmum length
+              {{title?.errors?.['minlength'].requiredLength}} characters
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <label class="form-label" for="form6Example2">Price</label>
+        <input
+          formControlName="price"
+          placeholder="Enter Price"
+          type="text"
+          id="form6Example2"
+          class="form-control"
+        />
+        <div *ngIf="price?.touched && !price?.valid" class="alert alert-danger">
+          <div *ngIf="price?.errors?.['required']">Price is required</div>
+          <div *ngIf="title?.errors?.['cannotContainSpace']">
+            Price is can't contain space
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form6Example3">Image</label>
+      <input type="file" id="form6Example3" class="form-control" />
+      <div *ngIf="image?.touched && !image?.valid" class="alert alert-danger">
+        <div *ngIf="image?.errors?.['required']">Image is required</div>
+      </div>
+    </div>
+
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form6Example4">category</label>
+      <select formControlName="category" id="category" class="form-control">
+        <option>Select Category</option>
+        <option *ngFor="let item of categories" [value]="item">{{ item }}</option>
+      </select>
+      <div *ngIf="category?.touched && !category?.valid" class="alert alert-danger">
+        <div *ngIf="category?.errors?.['required']">Category is required</div>
+      </div>
+    </div>
+
+    <!-- Message input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form6Example7">Description</label>
+      <textarea
+        formControlName="description"
+        placeholder="Enter Description"
+        class="form-control"
+        id="form6Example7"
+        rows="4"
+      ></textarea>
+      <div
+        *ngIf="description?.touched && !description?.valid"
+        class="alert alert-danger"
+      >
+        <div *ngIf="description?.errors?.['required']">Description is required</div>
+        <div *ngIf="description?.errors?.['minlength']">
+          Description is minmum length
+          {{description?.errors?.['minlength'].requiredLength}} characters
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="form-check d-flex justify-content-center mb-4">
+      <input
+        class="form-check-input me-2"
+        type="checkbox"
+        value=""
+        id="form6Example8"
+        checked
+      />
+      <label class="form-check-label" for="form6Example8">
+        Create an account?
+      </label>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-dark mb-4">Place order</button>
+  </form>
+</div>

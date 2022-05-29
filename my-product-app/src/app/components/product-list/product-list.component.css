@@ -1,0 +1,16 @@
+.cart{
+  position: fixed;
+  top: 3.5rem;
+  right: .895rem;
+  z-index: 1000;
+  width: 340px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+
+}
+
+.isactive{
+  display:none;
+}

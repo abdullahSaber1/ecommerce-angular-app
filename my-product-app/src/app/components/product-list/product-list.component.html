@@ -1,0 +1,19 @@
+<div class="row m-3 position-relative">
+  <div class="col d-flex justify-content-start flex-wrap">
+    <app-product-card
+      *ngFor="let product of products"
+      [product]="product"
+      (addToCart)="addToCart($event)"
+      class="col-3 mb-1 p-3"
+    >
+    </app-product-card>
+  </div>
+
+  <div [ngClass]="isActive ? 'cart' : 'isactive'">
+    <app-favorite-product
+      (closeCart)="closeCart($event)"
+      [cartProducts]="cartProducts"
+      (removeCart)="clearCart($event)"
+    ></app-favorite-product>
+  </div>
+</div>

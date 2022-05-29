@@ -1,0 +1,24 @@
+<div class="card" style="width: 18rem">
+  <img
+    [src]="product?.image"
+    class="card-img-top img-fluid"
+    style="height: 17rem"
+    alt="..."
+  />
+  <div class="card-body">
+    <a
+      [routerLink]="['/product', product?.id]"
+      class="card-title text-decoration-none fs-5 fw-semibold text-dark"
+    >
+      {{ product?.title | slice: 0:20 }}
+    </a>
+    <p class="card-text overflow-hidden">
+      {{ product?.description + '' | summary: 80 }}
+    </p>
+    <div class="row">
+      <button class="btn btn-dark col-6 me-3 ms-auto" (click)="addCart()">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>
