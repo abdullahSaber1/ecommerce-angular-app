@@ -12,6 +12,7 @@ import { Iuser } from 'src/app/models/iuser';
 export class LoginComponent implements OnInit {
   user:Ilogin={email:'', password:''}
   isNotValid:boolean = false;
+  userRegisted?:Iuser={username:'',email:'',password:''};
   constructor(private router:Router,private userService:UserService) { }
 
   ngOnInit(): void {
@@ -20,9 +21,17 @@ export class LoginComponent implements OnInit {
 
   login(user:any){
     this.userService.getUsers().subscribe(data=>{
-      this.isNotValid=data.includes(user)
-      console.log(this.isNotValid);
+      this.userRegisted=data.find(user=>user.email===this.user.email);
+      console.log(this.userRegisted);
     })
+
+    if(this.userRegisted){
+      if(this.userRegisted.password===this.user.password){
+        this.router.navigate(['/']);
+      }else{
+        this.isNotValid=true;
+      }
+    }
 
   }
 }

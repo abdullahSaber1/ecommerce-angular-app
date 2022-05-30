@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { InputValidator } from '../add-product/Custom-Validator/cannotContain-space.validators';
 
 @Component({
   selector: 'app-signup',
@@ -10,14 +11,16 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SignupComponent implements OnInit {
   registerForm=new FormGroup({
-    username:new FormControl(''),
-    email:new FormControl(''),
-    password:new FormControl(''),
-    confirmPassword:new FormControl(''),
+    username:new FormControl('',[Validators.required]),
+    email:new FormControl('',[Validators.required,Validators.email,InputValidator.cannotContainSpace]),
+    password:new FormControl('',[Validators.required,Validators.minLength(8),
+      Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]),
+    confirmPassword:new FormControl('',[Validators.required]),
 
   })
 
   isNotValid?:boolean;
+  notMatched?:boolean;
 
   constructor(private authService:UserService,private router:Router) { }
 
@@ -49,10 +52,17 @@ export class SignupComponent implements OnInit {
       console.log(this.isNotValid);
     })
 
-    if(this.isNotValid){
-      this.authService.register({email,password,username});
-      this.router.navigate(['/']);
+    if(password!== confirmPassword){
+      this.notMatched=true;
+    }else{
+      if(!this.isNotValid){
+        this.authService.register({email,password,username});
+        this.router.navigate(['/']);
+      }
+
     }
+
+
 
   }
 }

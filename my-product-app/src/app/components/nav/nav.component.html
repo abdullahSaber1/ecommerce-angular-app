@@ -25,21 +25,42 @@
         />
         <!-- <button class="btn btn-outline-light" type="submit">Search</button> -->
       </form>
-      <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/addProduct">Add Product</a>
-        </li>
 
-        <li class="nav-item position-relative">
-          <a role="button" (click)="changeActive()" class="nav-link">
-            <i class="fa-solid fa-cart-shopping"></i>
-          </a>
-          <span class="cartNum">0</span>
-        </li>
-      </ul>
+      <div class="ms-auto d-flex align-items-center justify-content-center">
+        <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/addProduct">Add Product</a>
+          </li>
+
+          <li class="nav-item position-relative">
+            <a role="button" (click)="changeActive()" class="nav-link">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <span class="cartNum">0</span>
+          </li>
+        </ul>
+
+        <div class="btn-group dropstart">
+          <img
+            src="https://www.gravatar.com/avatar/abdallah@gmail.com?s=200"
+            class="avatar rounded-5 dropdown-toggle"
+            data-bs-display="static"
+            aria-expanded="false"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          />
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a href="" class="dropdown-item">abdallahSaber@gmail.com</a></li>
+            <hr class="w-75 text-center mx-auto" />
+            <li><a href="/login" class="dropdown-item">Logout</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

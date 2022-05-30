@@ -8,6 +8,9 @@
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
+                <div class="alert alert-danger" *ngIf="isNotValid">
+                  username is already taken
+                </div>
                 <form
                   [formGroup]="registerForm"
                   (ngSubmit)="register(registerForm.value)"
@@ -19,7 +22,20 @@
                       <label class="form-label" for="form3Example1c">
                         Your Name
                       </label>
-                      <input type="text" id="form3Example1c" class="form-control" />
+                      <input
+                        formControlName="username"
+                        type="text"
+                        id="form3Example1c"
+                        class="form-control"
+                      />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="username?.touched && !username?.valid"
+                      >
+                        <div *ngIf="username?.errors?.['required']">
+                          username is required
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -29,19 +45,48 @@
                       <label class="form-label" for="form3Example3c">
                         Your Email
                       </label>
-                      <input type="email" id="form3Example3c" class="form-control" />
+                      <input
+                        formControlName="email"
+                        type="email"
+                        id="form3Example3c"
+                        class="form-control"
+                      />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="email?.touched && !email?.valid"
+                      >
+                        <div *ngIf="email?.errors?.['pattern']">invalid Email</div>
+                        <div *ngIf="email?.errors?.['required']">
+                          Email is required
+                        </div>
+                        <div *ngIf="email?.errors?.['cannotContainSpace']">
+                          Email can't contain space
+                        </div>
+                      </div>
                     </div>
                   </div>
-
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <label class="form-label" for="form3Example4c">Password</label>
                       <input
+                        formControlName="password"
                         type="password"
                         id="form3Example4c"
                         class="form-control"
                       />
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="password?.touched && !password?.valid"
+                      >
+                        <div *ngIf="password?.errors?.['pattern']">
+                          Password must contain at least one number, one uppercase
+                          and one lowercase letter, and at least 8 or more characters
+                        </div>
+                        <div *ngIf="password?.errors?.['required']">
+                          Password is required
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -52,10 +97,24 @@
                         Repeat your password
                       </label>
                       <input
+                        formControlName="confirmPassword"
                         type="password"
                         id="form3Example4cd"
                         class="form-control"
                       />
+
+                      <div
+                        class="alert alert-danger"
+                        *ngIf="
+                          notMatched ||
+                          (confirmPassword?.touched && !confirmPassword?.valid)
+                        "
+                      >
+                        <div *ngIf="notMatched">Passwords do not match</div>
+                        <div *ngIf="confirmPassword?.errors?.['required']">
+                          Password is required
+                        </div>
+                      </div>
                     </div>
                   </div>
 

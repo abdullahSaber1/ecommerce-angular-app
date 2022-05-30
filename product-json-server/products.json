@@ -256,7 +256,12 @@
       "password": "",
       "confirmPassword": "",
       "id": 1
+    },
+    {
+      "email": "abdallhsaber9@gmail.com",
+      "password": "*Passw0rd",
+      "username": "abdallah saber",
+      "id": 2
     }
-   
   ]
 }
