@@ -247,22 +247,16 @@
       "category": "category1",
       "image": "https://picsum.photos/200/300?random=1",
       "id": 21
-    },
-    {
-      "title": "Jacket Zara",
-      "description": "LALALALLLALA",
-      "price": "2000",
-      "category": "category2",
-      "image": "https://picsum.photos/200/300?random=1",
-      "id": 22
-    },
-    {
-      "title": "new F",
-      "description": "LALALALALLA",
-      "price": "2520",
-      "category": "category2",
-      "image": "https://picsum.photos/200/300?random=20",
-      "id": 23
     }
+  ],
+  "credentials": [
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "confirmPassword": "",
+      "id": 1
+    }
+   
   ]
 }

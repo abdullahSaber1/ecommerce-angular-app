@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Ilogin } from '../../models/ilogin';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { Iuser } from 'src/app/models/iuser';
 
 @Component({
   selector: 'app-login',
@@ -10,22 +12,36 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   user:Ilogin={email:'', password:''}
   isNotValid:boolean = false;
-  constructor(private router:Router) { }
+  constructor(private router:Router,private userService:UserService) { }
 
   ngOnInit(): void {
   }
 
-  login(myLoginForm:any){
-    console.log(myLoginForm.value);
-    if(myLoginForm.value.email === "abdallhsaber9@gmail.com" && myLoginForm.value.password ==="@Passw0rd"){
 
-      this.router.navigate(['/']);
-    }
-    else{
-      this.isNotValid=true;
-
-    }
+  login(user:any){
+    this.userService.getUsers().subscribe(data=>{
+      this.isNotValid=data.includes(user)
+      console.log(this.isNotValid);
+    })
 
   }
-
 }
+
+  // login(myLoginForm:any){
+  //  this.userService.login(myLoginForm)
+
+  //  console.log(this.userService.login(myLoginForm));
+
+
+  //   // console.log(myLoginForm.value);
+  //   // if(myLoginForm.value.email === "abdallhsaber9@gmail.com" && myLoginForm.value.password ==="@Passw0rd"){
+
+  //   //   this.router.navigate(['/']);
+  //   // }
+  //   // else{
+  //   //   this.isNotValid=true;
+
+  //   // }
+
+  // }
+
